@@ -1,0 +1,1 @@
+Hello, My name is Devam. My role on the team is Security, Documentation, and Diagram Lead. I'll show how the FIDS network is physically set up, including the routers, switches, PCs/devices, and how everything connects together.
