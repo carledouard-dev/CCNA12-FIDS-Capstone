@@ -1,0 +1,3 @@
+Hello, my name is Carl Edouard. I'm the Project Manager and Backbone Owner for CCNA-12. I own the Management zone and the multi area OSPFv2 backbone, including the OSPF authentication that keeps untrusted routers from injecting routes. On the PM side I run the weekly integration meeting, keep the gate checklist, manage the relationship with our sponsor, and give final sign off on the addressing plan before anything is configured.
+
+I work in IT operations and serve as a Data Systems Administrator in the Marine Corps Reserve, so I care a lot about networks that are documented, repeatable and provably secure. This semester my goal is to deliver a build where every zone boundary can be proven, not just assumed, and to come out of it ready for the CCNA.
