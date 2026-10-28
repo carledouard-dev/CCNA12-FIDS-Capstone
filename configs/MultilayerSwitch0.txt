@@ -1,0 +1,164 @@
+Current configuration : 2246 bytes
+!
+version 12.2(37)SE1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname MulitlayerSwitch0
+!
+!
+no profinet
+!
+!
+!
+!
+!
+ip routing
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.0.0.35 255.255.255.255
+!
+interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+ no switchport
+ ip address 10.0.255.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ no switchport
+ ip address 10.0.255.5 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ mac-address 0005.5e0c.0901
+ ip address 10.1.0.254 255.255.255.0
+!
+interface Vlan20
+ mac-address 0005.5e0c.0902
+ ip address 10.2.1.254 255.255.254.0
+!
+interface Vlan30
+ mac-address 0005.5e0c.0903
+ ip address 10.3.0.126 255.255.255.128
+!
+interface Vlan99
+ mac-address 0005.5e0c.0904
+ ip address 10.0.0.1 255.255.255.240
+!
+router ospf 1
+ router-id 10.0.0.35
+ log-adjacency-changes
+ passive-interface FastEthernet0/1
+ passive-interface FastEthernet0/2
+ passive-interface FastEthernet0/3
+ network 10.1.0.0 0.0.3.255 area 1
+ network 10.2.0.0 0.0.3.255 area 2
+ network 10.3.0.0 0.0.3.255 area 3
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+ transport input ssh
+line vty 5 15
+ login
+ transport input ssh
+!
+!
+!
+!
+end
