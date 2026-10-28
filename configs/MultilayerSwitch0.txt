@@ -1,11 +1,11 @@
-Current configuration : 2246 bytes
+Current configuration : 2336 bytes
 !
 version 12.2(37)SE1
 no service timestamps log datetime msec
 no service timestamps debug datetime msec
 no service password-encryption
 !
-hostname MulitlayerSwitch0
+hostname MS0
 !
 !
 no profinet
@@ -135,6 +135,9 @@ router ospf 1
  network 10.1.0.0 0.0.3.255 area 1
  network 10.2.0.0 0.0.3.255 area 2
  network 10.3.0.0 0.0.3.255 area 3
+ network 10.0.0.0 0.0.0.15 area 0
+ network 10.0.255.4 0.0.0.3 area 0
+ network 10.0.255.0 0.0.0.3 area 0
 !
 ip classless
 !
