@@ -1,4 +1,6 @@
-Current configuration : 1938 bytes
+Building configuration...
+
+Current configuration : 1959 bytes
 !
 version 12.2(37)SE1
 no service timestamps log datetime msec
@@ -143,6 +145,7 @@ line aux 0
 !
 line vty 0 4
  login
+ transport input ssh
 !
 !
 !
