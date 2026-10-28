@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 1959 bytes
+Current configuration : 2022 bytes
 !
 version 12.2(37)SE1
 no service timestamps log datetime msec
@@ -20,6 +20,8 @@ ip routing
 !
 !
 !
+!
+username admin secret 5 $1$mERr$o0/Mm.M1BJE/vC8JeOVHR/
 !
 !
 !
@@ -144,7 +146,7 @@ line con 0
 line aux 0
 !
 line vty 0 4
- login
+ login local
  transport input ssh
 !
 !
