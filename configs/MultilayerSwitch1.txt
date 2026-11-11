@@ -1,11 +1,9 @@
-Building configuration...
-
-Current configuration : 2022 bytes
+Current configuration : 2019 bytes
 !
 version 12.2(37)SE1
 no service timestamps log datetime msec
 no service timestamps debug datetime msec
-no service password-encryption
+service password-encryption
 !
 hostname MultilayerSwitch1
 !
