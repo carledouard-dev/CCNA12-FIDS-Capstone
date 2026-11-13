@@ -1,4 +1,4 @@
-Current configuration : 2019 bytes
+Current configuration : 2805 bytes
 !
 version 12.2(37)SE1
 no service timestamps log datetime msec
@@ -113,10 +113,12 @@ interface Vlan1
 interface Vlan40
  mac-address 0002.166e.b701
  ip address 10.4.0.14 255.255.255.240
+ ip access-group DMZ_IN in
 !
 interface Vlan99
  mac-address 0002.166e.b702
  ip address 10.0.0.17 255.255.255.240
+ ip access-group MGMT_IN in
 !
 router ospf 1
  router-id 10.0.0.36
@@ -133,6 +135,21 @@ ip classless
 ip flow-export version 9
 !
 !
+ip access-list extended DMZ_IN
+ permit icmp 10.4.0.0 0.0.0.15 host 10.4.0.14
+ permit tcp host 10.4.0.4 eq www 10.1.0.0 0.0.0.255 established
+ permit tcp host 10.4.0.4 eq 443 10.1.0.0 0.0.0.255 established
+ permit tcp host 10.4.0.4 eq www 10.2.0.0 0.0.1.255 established
+ permit tcp host 10.4.0.4 eq 443 10.2.0.0 0.0.1.255 established
+ permit udp host 10.4.0.3 eq domain 10.1.0.0 0.0.0.255
+ permit udp host 10.4.0.3 eq domain 10.2.0.0 0.0.1.255
+ permit icmp 10.4.0.0 0.0.0.15 10.1.0.0 0.0.0.255 echo-reply
+ permit icmp 10.4.0.0 0.0.0.15 10.2.0.0 0.0.1.255 echo-reply
+ deny ip any any
+ip access-list extended MGMT_IN
+ permit ip 10.0.0.16 0.0.0.15 10.0.0.0 0.0.0.255
+ permit ip 10.0.0.16 0.0.0.15 10.0.255.0 0.0.0.255
+ deny ip any any
 !
 !
 !

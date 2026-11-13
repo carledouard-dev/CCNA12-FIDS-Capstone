@@ -1,4 +1,4 @@
-Current configuration : 2333 bytes
+Current configuration : 3505 bytes
 !
 version 12.2(37)SE1
 no service timestamps log datetime msec
@@ -113,14 +113,17 @@ interface Vlan1
 interface Vlan10
  mac-address 0005.5e0c.0901
  ip address 10.1.0.254 255.255.255.0
+ ip access-group ENG_IN in
 !
 interface Vlan20
  mac-address 0005.5e0c.0902
  ip address 10.2.1.254 255.255.254.0
+ ip access-group CORP_IN in
 !
 interface Vlan30
  mac-address 0005.5e0c.0903
  ip address 10.3.0.126 255.255.255.128
+ ip access-group GUEST_IN in
 !
 interface Vlan99
  mac-address 0005.5e0c.0904
@@ -144,6 +147,32 @@ ip classless
 ip flow-export version 9
 !
 !
+ip access-list extended ENG_IN
+ permit icmp 10.1.0.0 0.0.0.255 host 10.1.0.254
+ permit icmp 10.1.0.0 0.0.0.255 10.2.0.0 0.0.1.255 echo-reply
+ permit tcp 10.1.0.0 0.0.0.255 host 10.4.0.4 eq www
+ permit tcp 10.1.0.0 0.0.0.255 host 10.4.0.4 eq 443
+ permit udp 10.1.0.0 0.0.0.255 host 10.4.0.3 eq domain
+ permit icmp 10.1.0.0 0.0.0.255 10.4.0.0 0.0.0.15 echo
+ permit tcp 10.1.0.0 0.0.0.255 10.2.0.0 0.0.1.255 established
+ deny ip any any
+ip access-list extended CORP_IN
+ permit icmp 10.2.0.0 0.0.1.255 host 10.2.1.254
+ permit ip 10.2.0.0 0.0.1.255 10.1.0.0 0.0.0.255
+ permit tcp 10.2.0.0 0.0.1.255 host 10.4.0.4 eq www
+ permit tcp 10.2.0.0 0.0.1.255 host 10.4.0.4 eq 443
+ permit udp 10.2.0.0 0.0.1.255 host 10.4.0.3 eq domain
+ permit icmp 10.2.0.0 0.0.1.255 10.4.0.0 0.0.0.15 echo
+ deny ip any any
+ip access-list extended GUEST_IN
+ permit icmp 10.3.0.0 0.0.0.127 host 10.3.0.126
+ deny ip any 10.1.0.0 0.0.3.255
+ deny ip any 10.2.0.0 0.0.3.255
+ deny ip any 10.3.0.0 0.0.3.255
+ deny ip any 10.4.0.0 0.0.3.255
+ deny ip any 10.0.0.0 0.0.0.255
+ deny ip any 10.0.255.0 0.0.0.255
+ permit ip any any
 !
 !
 !
@@ -165,3 +194,4 @@ line vty 5 15
 !
 !
 end
+
