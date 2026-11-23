@@ -1,4 +1,4 @@
-Current configuration : 3505 bytes
+Current configuration : 3600 bytes
 !
 version 12.2(37)SE1
 no service timestamps log datetime msec
@@ -18,6 +18,8 @@ ip routing
 !
 !
 !
+!
+username admin privilege 15 secret 5 $1$mERr$o0/Mm.M1BJE/vC8JeOVHR/
 !
 !
 !
@@ -180,14 +182,15 @@ ip access-list extended GUEST_IN
 !
 !
 line con 0
+ login local
 !
 line aux 0
 !
 line vty 0 4
- login
+ login local
  transport input ssh
 line vty 5 15
- login
+ login local
  transport input ssh
 !
 !
